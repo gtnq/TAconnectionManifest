@@ -12,7 +12,7 @@ const PDFReader = ({ pdfUrl }) => {
 
 			const loadingTask = pdfjs.getDocument(pdfUrl);
 			const pdf = await loadingTask.promise;
-            for (let i = 1, len = pdf.numPages; i < len; i += 2) {
+            for (let i = 1; i < pdf.numPages; i += 2) {
                 const page = await pdf.getPage(i);
 
                 const content = await page.getTextContent();
