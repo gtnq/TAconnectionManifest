@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import PDFReader from './read';
 
-function App() {
+export default function App() {
+  const [pdfUrl, setPdfUrl] = useState(null);
+
+  const onFileChange = (e) => {
+    if (e.target.files.length === 0) return;
+
+    const file = e.target.files[0];
+    const objectUrl = URL.createObjectURL(file);
+    setPdfUrl(objectUrl);
+  }
+  console.log('test')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="App">
+	<h1>Flight Manifest</h1>
+      <input type="file" onChange={onFileChange} accept=".pdf"/>
+      {pdfUrl && <PDFReader pdfUrl={pdfUrl} />}
     </div>
   );
 }
 
-export default App;
+
+
