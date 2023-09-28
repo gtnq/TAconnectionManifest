@@ -17,7 +17,6 @@ const PDFReader = ({ pdfUrl }) => {
 
                 await page.getTextContent().then((content) => {
                     const strings = content.items.map((item) => item.str).join(" ");
-                    console.log(strings[0])
                     
                     console.log(strings)
                     all.push(strings)
@@ -37,7 +36,6 @@ const PDFReader = ({ pdfUrl }) => {
         
         
         
-		loadPdf();//test
 		return () => {
             
 		    URL.revokeObjectURL(pdfUrl);
