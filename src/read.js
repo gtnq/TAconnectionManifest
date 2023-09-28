@@ -15,24 +15,38 @@ const PDFReader = ({ pdfUrl }) => {
             for (let i = 1; i < pdf.numPages; i += 2) {
                 const page = await pdf.getPage(i);
 
-                const content = await page.getTextContent();
-
-                const strings = content.items.map((item) => item.str);
-                setText(strings.join(" "));
-                setAll([...all, text]);
+                await page.getTextContent().then((content) => {
+                    const strings = content.items.map((item) => item.str).join(" ");
+                    console.log(strings[0])
+                    
+                    console.log(strings)
+                    all.push(strings)
+                    //console.log(all)
+                })
+                 
+                // const strings = content.items.map((item) => item.str);
+                // setText(strings.join(" "))
+                
             }
-            console.log(all)
+             console.log(all)
+             const txt = all.map((item) => (
+                <div>{item}</div>
+            ))
+            setText(txt)
 		};
-
-		loadPdf();
+        
+        
+        
+		loadPdf();//test
 		return () => {
-			URL.revokeObjectURL(pdfUrl);
+            
+		    URL.revokeObjectURL(pdfUrl);
 		};
 	}, [pdfUrl]);
-
+    
 	return (
 		<div>
-			<div className="pdf-text">{all}</div>
+			<div className="pdf-text">{text}</div>
 		</div>
 	);
 };
