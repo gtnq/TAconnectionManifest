@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as pdfjs from "pdfjs-dist";
+import filterInfo from "./filter.js";
 
 const PDFReader = ({ pdfUrl }) => {
 	const [text, setText] = useState("");
@@ -12,14 +13,18 @@ const PDFReader = ({ pdfUrl }) => {
 
 			const loadingTask = pdfjs.getDocument(pdfUrl);
 			const pdf = await loadingTask.promise;
-            for (let i = 1; i < pdf.numPages; i += 2) {
+            for (let i = 1; i < pdf.numPages; i ++) {
                 const page = await pdf.getPage(i);
 
                 await page.getTextContent().then((content) => {
-                    const strings = content.items.map((item) => item.str).join(" ");
+                    let strings = content.items.map((item) => item.str).filter((item) => {return /\S/.test(item)});
                     
-                    console.log(strings)
-                    all.push(strings)
+                    //console.log(strings)
+					if (strings[0] === "Folio"){
+						strings = filterInfo(strings)
+						
+                    	all.push(strings);}
+						
                     //console.log(all)
                 })
                  
@@ -27,15 +32,18 @@ const PDFReader = ({ pdfUrl }) => {
                 // setText(strings.join(" "))
                 
             }
-             console.log(all)
-             const txt = all.map((item) => (
+            // all.filter((item) => {return /\S/.test(item)})
+			
+			
+			console.log(all)
+            const txt = all.map((item) => (
                 <div>{item}</div>
             ))
             setText(txt)
 		};
         
         
-        
+        loadPdf()
 		return () => {
             
 		    URL.revokeObjectURL(pdfUrl);
