@@ -23,7 +23,7 @@ const PDFReader = ({ pdfUrl }) => {
 					if (strings[0] === "Folio"){
 						strings = filterInfo(strings)
 						
-                    	all.push(strings);}
+                    	all.push(...strings);}
 						
                     //console.log(all)
                 })
@@ -33,11 +33,17 @@ const PDFReader = ({ pdfUrl }) => {
                 
             }
             // all.filter((item) => {return /\S/.test(item)})
+			// sort by date
 			
-			
+			all.sort((a, b) => {
+				let dateA = new Date(a.time.date);
+				let dateB = new Date(b.time.date);
+				return dateA - dateB;
+			});
+			//console.log(all)
 			console.log(all)
             const txt = all.map((item) => (
-                <div>{item}</div>
+                <div>{item.flight} & {item.time.date} @ {item.time.time}</div>
             ))
             setText(txt)
 		};
@@ -46,9 +52,9 @@ const PDFReader = ({ pdfUrl }) => {
         loadPdf()
 		return () => {
             
-		    URL.revokeObjectURL(pdfUrl);
+		    URL.revokeObjectURL(pdfUrl); 
 		};
-	}, [pdfUrl]);
+	}, [pdfUrl, all]);
     
 	return (
 		<div>
