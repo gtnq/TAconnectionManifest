@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.073c9b0a.css",
-    "main.js": "/react-gh-pages/static/js/main.4d94e784.js",
-    "static/js/787.c42ae8f5.chunk.js": "/react-gh-pages/static/js/787.c42ae8f5.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.073c9b0a.css.map": "/react-gh-pages/static/css/main.073c9b0a.css.map",
-    "main.4d94e784.js.map": "/react-gh-pages/static/js/main.4d94e784.js.map",
-    "787.c42ae8f5.chunk.js.map": "/react-gh-pages/static/js/787.c42ae8f5.chunk.js.map"
+    "main.css": "/TAconnectionManifest/static/css/main.073c9b0a.css",
+    "main.js": "/TAconnectionManifest/static/js/main.d58d502a.js",
+    "static/js/787.c42ae8f5.chunk.js": "/TAconnectionManifest/static/js/787.c42ae8f5.chunk.js",
+    "index.html": "/TAconnectionManifest/index.html",
+    "main.073c9b0a.css.map": "/TAconnectionManifest/static/css/main.073c9b0a.css.map",
+    "main.d58d502a.js.map": "/TAconnectionManifest/static/js/main.d58d502a.js.map",
+    "787.c42ae8f5.chunk.js.map": "/TAconnectionManifest/static/js/787.c42ae8f5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.4d94e784.js"
+    "static/js/main.d58d502a.js"
   ]
 }
