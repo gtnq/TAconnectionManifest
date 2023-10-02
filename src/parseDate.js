@@ -34,7 +34,7 @@ function parseDateString(dateStr) {
 
     let date = new Date(year, month, day, hours, minutes);
     let dateString = date.toDateString()
-    let timeStr = date.toTimeString()
+    let timeStr = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
 
     return {date: dateString, time: timeStr};
 }
