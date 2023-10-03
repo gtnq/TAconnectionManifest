@@ -87,8 +87,8 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 				// setText(strings.join(" "))
 			}
 			setAll(sortDate(all))
-			setArv(sortDate(all.filter((item) => item.dep === false)));
-			setDep(sortDate(all.filter((item) => item.dep === true)));
+			setArv(sortDate(all.filter((item) => item.dep === true)));
+			setDep(sortDate(all.filter((item) => item.dep === false)));
 			setText(generate(all));
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
