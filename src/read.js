@@ -4,38 +4,57 @@ import skyFilterInfo from "./skyFilter";
 import horizFilterInfo from "./horizFilter";
 import generate from "./generate";
 import sortDate from "./sortDate";
-
 import ByDate from "./bydate";
 import ByStatus from "./bystatus";
 
+
+
 const PDFReader = ({ pdfUrl, horiz }) => {
 	const [text, setText] = useState("");
+
 	const [all, setAll] = useState([]);
 	const [arv, setArv] = useState([]);
 	const [dep, setDep] = useState([]);
+
 	const [disALL, setDisALL] = useState(true);
 	const [disARV, setDisARV] = useState(false);
 	const [disDEP, setDisDEP] = useState(false);
-	const [byDate, setbyDate] = useState([]);
+	
 	const [viaStatus, setViaStatus] = useState(true);
 	const [viaDate, setViaDate] = useState(false);
 
-	const items = {
+	const [byDate, setbyDate] = useState([]);
+	const [byDateARV, setbyDateARV] = useState([]);
+	const [byDateDEP, setbyDateDEP] = useState([]);
+
+	
+
+	const display = {
 		text: text,
-		arv: arv,
-		dep: dep,
-		all: all,
-		setDisALL: setDisALL,
-		setDisARV: setDisARV,
-		setDisDEP: setDisDEP,
 		setText: setText,
+
 		disALL: disALL,
 		disARV: disARV,
 		disDEP: disDEP,
+		setDisALL: setDisALL,
+		setDisARV: setDisARV,
+		setDisDEP: setDisDEP,
+
+		all: all,
+		arv: arv,
+		dep: dep,
+
+		byDate: byDate,
+		setbyDateARV: setbyDateARV,
+		setbyDateDEP: setbyDateDEP,
+		byDateARV: byDateARV,
+		byDateDEP: byDateDEP,
+
+
 	}
 
 
-	const changeDisplay = (e, choice) => {
+	const changeDisplay = (choice) => {	
 		if (choice === 'status') {
 			setViaStatus(true);
 			setViaDate(false);
@@ -101,14 +120,14 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 	return (
 		<div>
-			{!viaStatus && <button onClick={(e) => changeDisplay(e, 'status')}>By Status</button>}
-			{!viaDate && <button onClick={(e) => changeDisplay(e, 'date')}>By Date</button>}
+			{!viaStatus && <button onClick={(e) => changeDisplay('status')}>By Status</button>}
+			{!viaDate && <button onClick={(e) => changeDisplay('date')}>By Date</button>}
 			<div className="viStatus">
-				{viaStatus && <ByStatus item={items}/>}
+				{viaStatus && <ByStatus item={display}/>}
 			</div>
 			<div className="viaDate">
 				
-				{viaDate && <ByDate byDate={byDate} />}
+				{viaDate && <ByDate byDates={display} />}
 			</div>
 
 

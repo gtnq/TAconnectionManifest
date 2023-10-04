@@ -1,33 +1,37 @@
-import depOptions from "./options";
+import options from "./options";
 
 const ByStatus = ( {item} ) => {
-    const {setDisALL,
-        setDisARV,
-        setDisDEP,
-        setText,
-        arv,
-        dep,
-        all,
+    const {
         disALL,
         disARV,
         disDEP,
-        text,} = item;
-        
+        text,
+		all,
+		arv,
+		dep,
+		setText,
+		setDisALL,
+		setDisARV,
+		setDisDEP,} = item;
+
+	
 	return (
 		<>
 			<select
 				defaultValue="ALL"
 				onChange={(e) => {
-					depOptions(
+					options(
 						e.target.value,
 						setDisALL,
 						setDisARV,
 						setDisDEP,
 						setText,
+						all,
 						arv,
 						dep,
-						all
-					);
+					)
+					
+					;
 				}}>
 				<option value="ARV">ARV</option>
 				<option value="DEP">DEP</option>
@@ -37,7 +41,7 @@ const ByStatus = ( {item} ) => {
 				{disALL && <div className="ALL">{text}</div>}
 				{disARV && <div className="ARV">{text}</div>}
 				{disDEP && <div className="DEP">{text}</div>}
-			</div>{" "}
+			</div>
 		</>
 	);
 };
