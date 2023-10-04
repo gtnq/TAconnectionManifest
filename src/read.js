@@ -5,6 +5,9 @@ import horizFilterInfo from "./horizFilter";
 import generate from "./generate";
 import sortDate from "./sortDate";
 
+import ByDate from "./bydate";
+import ByStatus from "./bystatus";
+
 const PDFReader = ({ pdfUrl, horiz }) => {
 	const [text, setText] = useState("");
 	const [all, setAll] = useState([]);
@@ -13,44 +16,35 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 	const [disALL, setDisALL] = useState(true);
 	const [disARV, setDisARV] = useState(false);
 	const [disDEP, setDisDEP] = useState(false);
+	const [byDate, setbyDate] = useState([]);
+	const [viaStatus, setViaStatus] = useState(true);
+	const [viaDate, setViaDate] = useState(false);
 
-	
-	//console.log(horiz)
+	const items = {
+		text: text,
+		arv: arv,
+		dep: dep,
+		all: all,
+		setDisALL: setDisALL,
+		setDisARV: setDisARV,
+		setDisDEP: setDisDEP,
+		setText: setText,
+		disALL: disALL,
+		disARV: disARV,
+		disDEP: disDEP,
+	}
 
-	const changeOption = (e) => {
-		if (e === "ARV") {
-			setDisALL(false);
-			setDisARV(true);
-			setDisDEP(false)
 
-			
-
-			let output = generate(arv)
-
-			setText(output);
-			//console.log(output)
-
-		} else if (e === "DEP") {
-			setDisALL(false);
-			setDisARV(false)
-			
-			setDisDEP(true)
-			
-			let output = generate(dep)
-			setText(output);
-			//console.log(output)
-
-		} else if (e === "ALL") {
-			setDisALL(true);
-			setDisARV(false);
-			setDisDEP(false)
-
-			let output = generate(all)
-			//console.log(output)
-
-			setText(output);
+	const changeDisplay = (e, choice) => {
+		if (choice === 'status') {
+			setViaStatus(true);
+			setViaDate(false);
+		} else if (choice === 'date') {
+			setViaStatus(false);
+			setViaDate(true);
 		}
-	};
+	}
+
 
 	useEffect(() => {
 		const loadPdf = async () => {
@@ -86,13 +80,14 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 				// const strings = content.items.map((item) => item.str);
 				// setText(strings.join(" "))
 			}
-			setAll(sortDate(all))
+
 			setArv(sortDate(all.filter((item) => item.dep === true)));
 			setDep(sortDate(all.filter((item) => item.dep === false)));
-			setText(generate(all));
+			setAll(sortDate(all));
+			setText(generate(all, setbyDate));
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
-			
+
 			//console.log(all)
 			//console.log(all)
 		};
@@ -102,20 +97,20 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			URL.revokeObjectURL(pdfUrl);
 		};
 	}, [pdfUrl, all, horiz]);
+	//console.log(byDate);
 
-	
 	return (
 		<div>
-			<div className="output">
-				<select defaultValue = "ALL" onChange={(e) => {changeOption(e.target.value)} }>
-					<option value="ARV">ARV</option>
-					<option value="DEP">DEP</option>
-					<option value="ALL" >ALL</option>
-				</select>
+			{!viaStatus && <button onClick={(e) => changeDisplay(e, 'status')}>By Status</button>}
+			{!viaDate && <button onClick={(e) => changeDisplay(e, 'date')}>By Date</button>}
+			<div className="viStatus">
+				{viaStatus && <ByStatus item={items}/>}
 			</div>
-			{disALL && <div className="ALL">{text}</div>}
-			{disARV && <div className="ARV">{text}</div>}
-			{disDEP && <div className="DEP">{text}</div>}
+			<div className="viaDate">
+				
+				{viaDate && <ByDate byDate={byDate} />}
+			</div>
+
 
 		</div>
 	);
