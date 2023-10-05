@@ -77,7 +77,7 @@ function horizFilterInfo(data) {
     
 
     return result.filter(item => {
-        const signature = `${item.flight}-${item.date.time}`;
+        const signature = `${item.flight}-${item.date.date}-${item.date.time}`;
 
         if (!seen.has(signature)) {
             seen.add(signature);
