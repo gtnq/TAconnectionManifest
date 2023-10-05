@@ -80,7 +80,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 			const loadingTask = pdfjs.getDocument(pdfUrl);
 			const pdf = await loadingTask.promise;
-			for (let i = 1; i < pdf.numPages; i++) {
+			for (let i = 1; i < pdf.numPages+1; i++) {
 				const page = await pdf.getPage(i);
 
 				await page.getTextContent().then((content) => {
@@ -89,9 +89,11 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 						.filter((item) => {
 							return /\S/.test(item);
 						});
+					// console.log(strings)
 
 					//console.log(strings)
 					if (strings[0] === "Folio") {
+						
 						if (horiz) {
 							strings = horizFilterInfo(strings);
 							//console.log(strings)
@@ -113,12 +115,12 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			setAll(sortDate(all));
 			setText(generate(all));
 			setbyDate(dateGenerate(all));
-			console.log(byDate)
+			// console.log(byDate)
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
 
 			//console.log(all)
-			console.log(all)
+			//console.log(all)
 		};
 
 		loadPdf();

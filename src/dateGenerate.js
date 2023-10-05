@@ -37,7 +37,7 @@ const dateGenerate = (data) => {
 					};
 					today.flights.push(item);
 			}
-            console.log(arr)
+            //console.log(arr)
         }
 	});
     return arr;

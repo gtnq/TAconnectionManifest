@@ -1,6 +1,7 @@
 import parseDate from "./parseDate.js";
 
 function horizFilterInfo(data) {
+	// console.log(data)
 	// Regular expressions
 	const flightRegex = /^AS\d{4}$/;
 	const dateRegex =
@@ -38,19 +39,23 @@ function horizFilterInfo(data) {
 			parsedDate = parseDate(filteredData[i]);
 			info.date = parsedDate;
 		} else if (dateRegex.test(filteredData[i])) {
+			// console.log(filteredData[i],'date regex check')
             //console.log('date added')
 			date = filteredData[i];
 		} else if (timeRegex.test(filteredData[i])) {
             //console.log('time added')
+			// console.log(filteredData[i],'time regex check')
+
 			time = filteredData[i];
 		}
-        //console.log(date, time)
+        // console.log(date, time, 'after check')
 		if (date && time) {
 			forfix = date + " " + time;
 			parsedDate = parseDate(forfix);
 			info.date = parsedDate;
 			date = null;
 			time = null;
+			// console.log(info)
 		}
 		//console.log(info.flight, info.date);
         //console.log(info)
@@ -64,7 +69,9 @@ function horizFilterInfo(data) {
 			};
 		} else if (info.date) {
             info.flight = 'departure time'
+			info.dep = false
             result[result.length-1].dep = false
+			
             result.push(info);
             info = {
                 flight: null,
