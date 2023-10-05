@@ -1,14 +1,8 @@
 let dup = false;
 
-const generate = (all, setbyDate = null) => {
-	let arr, title, today;
-	if (setbyDate) {
-		arr = [];
-	}
-
-	return all.map((item, ind) => {
+const generate = (all) => all.map((item, ind) => {
 		if (!dup) {
-			title = item.date.date;
+			let title = item.date.date;
 			//console.log(item.dep)
 			let departure = item.dep ? "ARV" : "DEP";
 			if (item.flight === "departure time") {
@@ -45,28 +39,12 @@ const generate = (all, setbyDate = null) => {
 			}
 
 			if (title === all[ind - 1]?.date.date) {
-				if (setbyDate && ind) {
-					today.flights.push(item);
-					if (ind + 1 >= all.length) {
-						setbyDate(arr);
-					}
-				}
 				return (
 					<div>
 						{item.flight} @ {item.date.time} {departure}
 					</div>
 				);
 			} else {
-				if (setbyDate) {
-					if (ind) {
-						arr.push(today);
-					}
-                    today = {
-                        date: title,
-                        flights: [],
-                    };
-					today.flights.push(item);
-				}
 				return (
 					<>
 						<div>{title}</div>
@@ -80,6 +58,5 @@ const generate = (all, setbyDate = null) => {
 			dup = false;
 		}
 	});
-};
 
 export default generate;

@@ -11,6 +11,9 @@ const options = (
 	dep,
 ) => {
 	let output
+	if (!arv || !dep) {
+		return
+	} else 
 	if (e === "ARV") {
 		setDisALL(false);
 		setDisARV(true);
@@ -29,7 +32,7 @@ const options = (
 		setDisARV(false);
 		setDisDEP(false);
 		output = generate(all);
-		console.log(all)
+		//console.log(all)
 		setText(output);
 	}
 };

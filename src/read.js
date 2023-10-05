@@ -6,8 +6,9 @@ import generate from "./generate";
 import sortDate from "./sortDate";
 import ByDate from "./bydate";
 import ByStatus from "./bystatus";
-
-
+import options from "./options";
+import filterArvDep from "./arrivalDepart";
+import dateGenerate from "./dateGenerate";
 
 const PDFReader = ({ pdfUrl, horiz }) => {
 	const [text, setText] = useState("");
@@ -19,15 +20,13 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 	const [disALL, setDisALL] = useState(true);
 	const [disARV, setDisARV] = useState(false);
 	const [disDEP, setDisDEP] = useState(false);
-	
+
 	const [viaStatus, setViaStatus] = useState(true);
 	const [viaDate, setViaDate] = useState(false);
 
 	const [byDate, setbyDate] = useState([]);
 	const [byDateARV, setbyDateARV] = useState([]);
 	const [byDateDEP, setbyDateDEP] = useState([]);
-
-	
 
 	const display = {
 		text: text,
@@ -49,21 +48,30 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 		setbyDateDEP: setbyDateDEP,
 		byDateARV: byDateARV,
 		byDateDEP: byDateDEP,
+	};
 
-
-	}
-
-
-	const changeDisplay = (choice) => {	
-		if (choice === 'status') {
+	const changeDisplay = (choice) => {
+		let current = all
+		if (choice === "status") {
 			setViaStatus(true);
 			setViaDate(false);
-		} else if (choice === 'date') {
+			current = all
+		} else if (choice === "date") {
 			setViaStatus(false);
 			setViaDate(true);
+			current = byDate[0].flights
 		}
-	}
-
+		options(
+			"ALL",
+			setDisALL,
+			setDisARV,
+			setDisDEP,
+			setText,
+			current,
+			arv,
+			dep
+		);
+	};
 
 	useEffect(() => {
 		const loadPdf = async () => {
@@ -100,15 +108,17 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 				// setText(strings.join(" "))
 			}
 
-			setArv(sortDate(all.filter((item) => item.dep === true)));
-			setDep(sortDate(all.filter((item) => item.dep === false)));
+			setArv(sortDate(filterArvDep(all, true)));
+			setDep(sortDate(filterArvDep(all, false)));
 			setAll(sortDate(all));
-			setText(generate(all, setbyDate));
+			setText(generate(all));
+			setbyDate(dateGenerate(all));
+			console.log(byDate)
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
 
 			//console.log(all)
-			//console.log(all)
+			console.log(all)
 		};
 
 		loadPdf();
@@ -120,17 +130,20 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 	return (
 		<div>
-			{!viaStatus && <button onClick={(e) => changeDisplay('status')}>By Status</button>}
-			{!viaDate && <button onClick={(e) => changeDisplay('date')}>By Date</button>}
+			{!viaStatus && (
+				<button onClick={(e) => changeDisplay("status")}>
+					By Status
+				</button>
+			)}
+			{!viaDate && (
+				<button onClick={(e) => changeDisplay("date")}>By Date</button>
+			)}
 			<div className="viStatus">
-				{viaStatus && <ByStatus item={display}/>}
+				{viaStatus && <ByStatus item={display} />}
 			</div>
 			<div className="viaDate">
-				
 				{viaDate && <ByDate byDates={display} />}
 			</div>
-
-
 		</div>
 	);
 };
