@@ -32,12 +32,11 @@ const ByDate = ({ byDates }) => {
 	//console.log(minDate);
 
 	const selectstatus = (e) => {
-
-		let day
+		let day;
 		if (month !== minDate.getMonth()) {
-			day = byDate.length - 1
+			day = byDate.length - 1;
 		} else {
-			day = today
+			day = today;
 		}
 		options(
 			e.target.value,
@@ -57,7 +56,8 @@ const ByDate = ({ byDates }) => {
 
 		//include first day of the next month
 		if (e.getMonth() === minDate.getMonth() + 1 && e.getDate() === 1) {
-			console.log("nov 1");
+			if (byDate[byDate.length - 1])
+			{console.log("nov 1");
 			setbyDateARV(filterArvDep(byDate[byDate.length - 1].flights, true));
 			setbyDateDEP(
 				filterArvDep(byDate[byDate.length - 1].flights, false)
@@ -72,20 +72,31 @@ const ByDate = ({ byDates }) => {
 				byDate[byDate.length - 1].flights,
 				byDateARV,
 				byDateDEP
-			);
+			)}
+			else {
+				alert("flights not recorded");
+			}
 		} else if (e.getMonth() === minDate.getMonth()) {
-			setbyDateARV(filterArvDep(byDate[e.getDate() - 1].flights, true));
-			setbyDateDEP(filterArvDep(byDate[e.getDate() - 1].flights, false));
-			options(
-				"ALL",
-				setDisALL,
-				setDisARV,
-				setDisDEP,
-				setText,
-				byDate[e.getDate() - 1].flights,
-				byDateARV,
-				byDateDEP
-			);
+			if (byDate[e.getDate() - 1]) {
+				setbyDateARV(
+					filterArvDep(byDate[e.getDate() - 1].flights, true)
+				);
+				setbyDateDEP(
+					filterArvDep(byDate[e.getDate() - 1].flights, false)
+				);
+				options(
+					"ALL",
+					setDisALL,
+					setDisARV,
+					setDisDEP,
+					setText,
+					byDate[e.getDate() - 1].flights,
+					byDateARV,
+					byDateDEP
+				);
+			} else {
+				alert("flights not recorded");
+			}
 		} else {
 			alert("flights not recorded");
 		}
@@ -102,7 +113,7 @@ const ByDate = ({ byDates }) => {
 				onChange={(e) => {
 					selectstatus(e);
 				}}>
-				<option value="">Select Status</option>	
+				<option value="">Select Status</option>
 				<option value="ARV">ARV</option>
 				<option value="DEP">DEP</option>
 				<option value="ALL">ALL</option>
