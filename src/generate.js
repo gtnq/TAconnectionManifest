@@ -70,6 +70,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Driver from './driverSelect';
 
 const generate = (all) => {
   let currentTitle = null;
@@ -77,11 +78,7 @@ const generate = (all) => {
   let rows = [];
 
   all.forEach((item, ind) => {
-    let title = item.date.date;
-    let departure = item.dep ? "ARV" : "DEP";
-    if (item.flight === "departure time") {
-      departure = "";
-    }
+    let title = item.date.date
 
     // Your logic for handling duplicates and merging times goes here...
     
@@ -90,7 +87,8 @@ const generate = (all) => {
         <TableRow key={ind}>
           <TableCell>{item.flight}</TableCell>
           <TableCell>{item.date.time}</TableCell>
-          <TableCell>{departure}</TableCell>
+          <TableCell>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
+		  <TableCell><Driver /></TableCell>
         </TableRow>
       );
     } else {
@@ -106,6 +104,7 @@ const generate = (all) => {
                   <TableCell>Flight</TableCell>
                   <TableCell>Time</TableCell>
                   <TableCell>Departure</TableCell>
+				  <TableCell>Driver</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{rows}</TableBody>
@@ -119,7 +118,8 @@ const generate = (all) => {
         <TableRow key={ind}>
           <TableCell>{item.flight}</TableCell>
           <TableCell>{item.date.time}</TableCell>
-          <TableCell>{departure}</TableCell>
+          <TableCell>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
+		  <TableCell><Driver /></TableCell>
         </TableRow>
       );
     }
@@ -138,6 +138,7 @@ const generate = (all) => {
               <TableCell>Flight</TableCell>
               <TableCell>Time</TableCell>
               <TableCell>Departure</TableCell>
+			  <TableCell>Driver</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{rows}</TableBody>

@@ -68,16 +68,14 @@ function horizFilterInfo(data) {
                 dep: true
 			};
 		} else if (info.date) {
-            info.flight = 'departure time'
-			info.dep = false
-            result[result.length-1].dep = false
-			
-            result.push(info);
-            info = {
-                flight: null,
-                date: null,
+            
+            result[result.length-1].dep = info.date
+			info = {
+				flight: null,
+				date: null,
                 dep: true
-            };
+			};
+            
         }
 	}
     const seen = new Set();

@@ -40,20 +40,18 @@ function skyFilterInfo(string) {
 			date: parsedDate,
 			dep: isDeparture,
 		});
+		
 
         if (!isDeparture) {
             let thirtyMin = 30 * 60 * 1000;  // 30 minutes in milliseconds
             let depTime = new Date(parsedDate.date + ' ' + parsedDate.time) - thirtyMin;
-            let newDateObj = {
-                flight: "departure time",
-                date: {
+        	let depTimeObj = {
                     date: new Date(depTime).toDateString(),    
                     time: new Date(depTime).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-                },
-                dep: false,
-            };
-            result.push(newDateObj);
+                }
+            result[result.length-1].dep = depTimeObj;
         }
+		console.log(result[result.length-1])
 	}
 	return result;
 }
