@@ -1,7 +1,7 @@
 // let dup = false;
 
 // const generate = (all) => {
-// 	return (all.map((item, ind) => {
+// 	return (all.m   ap((item, ind) => {
 // 		console.log(item);
 // 		if (!dup) {
 // 			let title = item.date.date;

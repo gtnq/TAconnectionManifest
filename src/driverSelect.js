@@ -1,7 +1,7 @@
 //option react object
 import React, { useState } from "react";
 
-function Driver () {
+function Driver() {
 	const drivers = ["Jose", "Freddie", "Jule", "Phoenix"];
 	const [driver, setDriver] = useState("");
 	const [disDriver, setDisDriver] = useState(true);
@@ -12,16 +12,18 @@ function Driver () {
 	//const [disReset, setDisReset] = useState(false)
 
 	const selectedDriver = (e) => {
-		setDriver(e.target.value);
-		setDisOptions(false);
-		setReset(true);
-        setDisDriver(true)
+		if (e.target.value) {
+			setDriver(e.target.value);
+			setDisOptions(false);
+			setReset(true);
+			setDisDriver(true);
+		}
 	};
 	const resetChoice = () => {
 		setDriver("");
 		setDisOptions(true);
 		setReset(false);
-        setDisDriver(false)
+		setDisDriver(false);
 	};
 
 	const selectDriver = () => {
@@ -30,6 +32,7 @@ function Driver () {
 				onChange={(e) => {
 					selectedDriver(e);
 				}}>
+				<option value="">Select Driver</option>
 				{drivers.map((driver) => (
 					<option value={driver}>{driver}</option>
 				))}
@@ -39,10 +42,11 @@ function Driver () {
 	return (
 		<>
 			{disOptions && selectDriver()}
-			{disDriver && driver}{'     '}
+			{disDriver && driver}
+			{"     "}
 			{reset && <button onClick={resetChoice}>Reset</button>}
 		</>
 	);
-};
+}
 
 export default Driver;

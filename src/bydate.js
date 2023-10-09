@@ -102,6 +102,7 @@ const ByDate = ({ byDates }) => {
 				onChange={(e) => {
 					selectstatus(e);
 				}}>
+				<option value="">Select Status</option>	
 				<option value="ARV">ARV</option>
 				<option value="DEP">DEP</option>
 				<option value="ALL">ALL</option>

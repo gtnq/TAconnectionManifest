@@ -51,7 +51,7 @@ function skyFilterInfo(string) {
                 }
             result[result.length-1].dep = depTimeObj;
         }
-		console.log(result[result.length-1])
+		//console.log(result[result.length-1])
 	}
 	return result;
 }
