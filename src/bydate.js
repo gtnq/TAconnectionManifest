@@ -56,24 +56,26 @@ const ByDate = ({ byDates }) => {
 
 		//include first day of the next month
 		if (e.getMonth() === minDate.getMonth() + 1 && e.getDate() === 1) {
-			if (byDate[byDate.length - 1])
-			{console.log("nov 1");
-			setbyDateARV(filterArvDep(byDate[byDate.length - 1].flights, true));
-			setbyDateDEP(
-				filterArvDep(byDate[byDate.length - 1].flights, false)
-			);
-			console.log(byDateARV);
-			options(
-				"ALL",
-				setDisALL,
-				setDisARV,
-				setDisDEP,
-				setText,
-				byDate[byDate.length - 1].flights,
-				byDateARV,
-				byDateDEP
-			)}
-			else {
+			if (byDate[byDate.length - 1]) {
+				console.log("nov 1");
+				setbyDateARV(
+					filterArvDep(byDate[byDate.length - 1].flights, true)
+				);
+				setbyDateDEP(
+					filterArvDep(byDate[byDate.length - 1].flights, false)
+				);
+				console.log(byDateARV);
+				options(
+					"ALL",
+					setDisALL,
+					setDisARV,
+					setDisDEP,
+					setText,
+					byDate[byDate.length - 1].flights,
+					byDateARV,
+					byDateDEP
+				);
+			} else {
 				alert("flights not recorded");
 			}
 		} else if (e.getMonth() === minDate.getMonth()) {

@@ -23,10 +23,15 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 	const [viaStatus, setViaStatus] = useState(true);
 	const [viaDate, setViaDate] = useState(false);
+	const [viaWeek, setViaWeek] = useState(false);
 
 	const [byDate, setbyDate] = useState([]);
 	const [byDateARV, setbyDateARV] = useState([]);
 	const [byDateDEP, setbyDateDEP] = useState([]);
+
+	const [week, setWeek] = useState(0);
+	const [weekArv, setWeekArv] = useState([]);
+	const [weekDep, setWeekDep] = useState([]);
 
 	const display = {
 		text: text,
@@ -48,6 +53,14 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 		setbyDateDEP: setbyDateDEP,
 		byDateARV: byDateARV,
 		byDateDEP: byDateDEP,
+
+		week: week,
+		weekArv: weekArv,
+		weekDep: weekDep,
+		setWeekArv: setWeekArv,
+		setWeekDep: setWeekDep,
+		setWeek: setWeek,
+
 	};
 
 	const changeDisplay = (choice) => {
@@ -115,6 +128,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			setAll(sortDate(all));
 			setText(generate(all));
 			setbyDate(dateGenerate(all));
+			
 			// console.log(byDate)
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
