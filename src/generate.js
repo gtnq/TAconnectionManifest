@@ -86,40 +86,42 @@ const generate = (all) => {
     if (title === currentTitle) {
       rows.push(
         <TableRow key={ind}>
-          <TableCell>{item.flight}</TableCell>
-          <TableCell>{item.date.time}</TableCell>
-          <TableCell>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.flight}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.date.time}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
 		  <TableCell><Driver /></TableCell>
         </TableRow>
       );
     } else {
       if (rows.length > 0) {
         tables.push(
-          <TableContainer component={Paper} key={currentTitle}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <div className='table-wrapper' key={currentTitle}>
+          <TableContainer component={Paper}>
+            <Table style={{ minWidth: 100 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell colSpan={3}>{currentTitle}</TableCell>
+                  <TableCell colSpan={4}>{currentTitle}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Flight</TableCell>
-                  <TableCell>Time</TableCell>
-                  <TableCell>Departure</TableCell>
+                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Flight</TableCell>
+                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Time</TableCell>
+                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Departure</TableCell>
 				  <TableCell>Driver</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{rows}</TableBody>
             </Table>
           </TableContainer>
+          </div>
         );
         rows = [];
       }
       currentTitle = title;
       rows.push(
         <TableRow key={ind}>
-          <TableCell>{item.flight}</TableCell>
-          <TableCell>{item.date.time}</TableCell>
-          <TableCell>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.flight}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.date.time}</TableCell>
+          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
 		  <TableCell><Driver /></TableCell>
         </TableRow>
       );
@@ -130,15 +132,15 @@ const generate = (all) => {
   if (rows.length > 0) {
     tables.push(
       <TableContainer component={Paper} key={currentTitle}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table style={{ minWidth: 100 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={3}>{currentTitle}</TableCell>
+              <TableCell colSpan={4} style={{ padding: '4px 8px', fontSize: '0.8em' }}>{currentTitle}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Flight</TableCell>
-              <TableCell>Time</TableCell>
-              <TableCell>Departure</TableCell>
+              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Flight</TableCell>
+              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Time</TableCell>
+              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Departure</TableCell>
 			  <TableCell>Driver</TableCell>
             </TableRow>
           </TableHead>
@@ -148,7 +150,9 @@ const generate = (all) => {
     );
   }
 
-  return tables;
+  return <div className='table-container'>
+            {tables}
+        </div>
 };
 
 export default generate;

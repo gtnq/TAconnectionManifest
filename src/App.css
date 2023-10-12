@@ -1,38 +1,68 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media print {
+	body {
+		width: 100%;
+		max-width: 100%;
+		overflow: visible !important;
+		transform: scale(0.8); /* Adjust this value as needed */
+		transform-origin: top left;
+	}
+
+	/* Container for tables */
+	.table-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	/* Individual table wrapper */
+	.table-wrapper {
+		flex: 1;
+		max-width: 48%; /* slightly less than half to account for any margins or padding */
+		box-sizing: border-box;
+		page-break-inside: avoid; /* attempt to avoid breaking tables across pages */
+	}
+
+	th,
+	td {
+		padding: 4px 8px !important; /* Adjust as needed */
+	}
 }

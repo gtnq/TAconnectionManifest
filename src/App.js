@@ -34,12 +34,14 @@ export default function App() {
 				onChange={onFileChange}
 				accept=".pdf"
 			/>
+			<button onClick={() => window.print()}>Print\</button>
 			{pdfUrl && (
 				<PDFReader
 					pdfUrl={pdfUrl}
 					horiz={horiz}
 				/>
 			)}
+			
 		</div>
 	);
 }
