@@ -38,7 +38,16 @@
 }
 
 @media print {
+	.no-print {
+		display: none;
+	}
+
+	.column-to-hide {
+        display: none;
+    }
+	
 	body {
+		font-size: 12px;
 		width: 100%;
 		max-width: 100%;
 		overflow: visible !important;
@@ -56,13 +65,13 @@
 	/* Individual table wrapper */
 	.table-wrapper {
 		flex: 1;
-		max-width: 48%; /* slightly less than half to account for any margins or padding */
+		max-width: 33%; /* slightly less than half to account for any margins or padding */
 		box-sizing: border-box;
 		page-break-inside: avoid; /* attempt to avoid breaking tables across pages */
 	}
 
 	th,
 	td {
-		padding: 4px 8px !important; /* Adjust as needed */
+		padding: 4px 8px ; /* Adjust as needed */
 	}
 }

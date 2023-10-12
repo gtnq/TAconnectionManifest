@@ -30,11 +30,12 @@ export default function App() {
 		<div id="App">
 			<h1>Flight Manifest</h1>
 			<input
+				className="column-to-hide"
 				type="file"
 				onChange={onFileChange}
 				accept=".pdf"
 			/>
-			<button onClick={() => window.print()}>Print\</button>
+			<button className="column-to-hide" onClick={() => window.print()}>Print\</button>
 			{pdfUrl && (
 				<PDFReader
 					pdfUrl={pdfUrl}

@@ -158,12 +158,12 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 	return (
 		<div>
 			{!viaStatus && (
-				<button onClick={(e) => changeDisplay("status")}>
+				<button className="column-to-hide" onClick={(e) => changeDisplay("status")}>
 					By Status
 				</button>
 			)}
 			{!viaDate && (
-				<button onClick={(e) => changeDisplay("date")}>By Date</button>
+				<button className="column-to-hide" onClick={(e) => changeDisplay("date")}>By Date</button>
 			)}
 
 			{!viaWeek && (

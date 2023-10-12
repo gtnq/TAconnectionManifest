@@ -30,6 +30,7 @@ const ByWeek = ({ byWeeks }) => {
 	const selectWeek = (e) => {
 		return (
 			<select
+				className="column-to-hide"
 				onChange={(e) => {
 					
                     setWeekArv(filterArvDep(week[e.target.value],true))
@@ -59,6 +60,7 @@ const ByWeek = ({ byWeeks }) => {
 	return (
 		<>
 			<select
+				className="column-to-hide"
 				defaultValue="ALL"
 				onChange={(e) => {
                     options(

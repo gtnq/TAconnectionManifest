@@ -62,97 +62,181 @@
 // 	}));
 // };
 
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Driver from './driverSelect';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Driver from "./driverSelect";
 
 const generate = (all) => {
-  let currentTitle = null;
-  let tables = [];
-  let rows = [];
-  console.log(all)
+	let currentTitle = null;
+	let tables = [];
+	let rows = [];
+	console.log(all);
 
-  all.forEach((item, ind) => {
-    let title = item.date.date
+	all.forEach((item, ind) => {
+		let title = item.date.date;
 
-    // Your logic for handling duplicates and merging times goes here...
-    
-    if (title === currentTitle) {
-      rows.push(
-        <TableRow key={ind}>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.flight}</TableCell>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.date.time}</TableCell>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
-		  <TableCell><Driver /></TableCell>
-        </TableRow>
-      );
-    } else {
-      if (rows.length > 0) {
-        tables.push(
-          <div className='table-wrapper' key={currentTitle}>
-          <TableContainer component={Paper}>
-            <Table style={{ minWidth: 100 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell colSpan={4}>{currentTitle}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Flight</TableCell>
-                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Time</TableCell>
-                  <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Departure</TableCell>
-				  <TableCell>Driver</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>{rows}</TableBody>
-            </Table>
-          </TableContainer>
-          </div>
-        );
-        rows = [];
-      }
-      currentTitle = title;
-      rows.push(
-        <TableRow key={ind}>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.flight}</TableCell>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.date.time}</TableCell>
-          <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>{item.dep.time ? item.dep.time : "ARV"}</TableCell>
-		  <TableCell><Driver /></TableCell>
-        </TableRow>
-      );
-    }
-  });
+		// Your logic for handling duplicates and merging times goes here...
 
-  // Add the last table
-  if (rows.length > 0) {
-    tables.push(
-      <TableContainer component={Paper} key={currentTitle}>
-        <Table style={{ minWidth: 100 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell colSpan={4} style={{ padding: '4px 8px', fontSize: '0.8em' }}>{currentTitle}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Flight</TableCell>
-              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Time</TableCell>
-              <TableCell style={{ padding: '4px 8px', fontSize: '0.8em' }}>Departure</TableCell>
-			  <TableCell>Driver</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{rows}</TableBody>
-        </Table>
-      </TableContainer>
-    );
-  }
+		if (title === currentTitle) {
+			rows.push(
+				<TableRow key={ind}>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.flight}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.date.time}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.dep.time ? item.dep.time : "ARV"}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						<Driver />
+					</TableCell>
+				</TableRow>
+			);
+		} else {
+			if (rows.length > 0) {
+				tables.push(
+					<div
+						className="table-wrapper"
+						key={currentTitle}>
+						<TableContainer component={Paper}>
+							<Table
+								style={{ minWidth: 100 }}
+								aria-label="simple table">
+								<TableHead>
+									<TableRow>
+										<TableCell colSpan={4}>
+											{currentTitle}
+										</TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell
+											style={{
+												padding: "4px 8px",
+												fontSize: "0.8em",
+											}}>
+											Flight
+										</TableCell>
+										<TableCell
+											style={{
+												padding: "4px 8px",
+												fontSize: "0.8em",
+											}}>
+											Time
+										</TableCell>
+										<TableCell
+											style={{
+												padding: "4px 8px",
+												fontSize: "0.8em",
+											}}>
+											Departure
+										</TableCell>
+										<TableCell
+											style={{
+												padding: "4px 8px",
+												fontSize: "0.8em",
+											}}>
+											Driver
+										</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>{rows}</TableBody>
+							</Table>
+						</TableContainer>
+					</div>
+				);
+				rows = [];
+			}
+			currentTitle = title;
+			rows.push(
+				<TableRow key={ind}>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.flight}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.date.time}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						{item.dep.time ? item.dep.time : "ARV"}
+					</TableCell>
+					<TableCell
+						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
+						<Driver />
+					</TableCell>
+				</TableRow>
+			);
+		}
+	});
 
-  return <div className='table-container'>
-            {tables}
-        </div>
+	// Add the last table
+	if (rows.length > 0) {
+		tables.push(
+			<TableContainer
+				component={Paper}
+				key={currentTitle}>
+				<Table
+					style={{ minWidth: 100 }}
+					aria-label="simple table">
+					<TableHead>
+						<TableRow>
+							<TableCell
+								colSpan={4}
+								>
+								{currentTitle}
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell
+								style={{
+									padding: "4px 8px",
+									fontSize: "0.8em",
+								}}>
+								Flight
+							</TableCell>
+							<TableCell
+								style={{
+									padding: "4px 8px",
+									fontSize: "0.8em",
+								}}>
+								Time
+							</TableCell>
+							<TableCell
+								style={{
+									padding: "4px 8px",
+									fontSize: "0.8em",
+								}}>
+								Departure
+							</TableCell>
+							<TableCell
+								style={{
+									padding: "4px 8px",
+									fontSize: "0.8em",
+								}}>
+								Driver
+							</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>{rows}</TableBody>
+				</Table>
+			</TableContainer>
+		);
+	}
+
+	return <div className="table-container">{tables}</div>;
 };
 
 export default generate;

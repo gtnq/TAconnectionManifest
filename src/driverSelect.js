@@ -44,7 +44,7 @@ function Driver() {
 			{disOptions && selectDriver()}
 			{disDriver && driver}
 			{"     "}
-			{reset && <button onClick={resetChoice}>Reset</button>}
+			{reset && <button className = "no-print" onClick={resetChoice}>Reset</button>}
 		</>
 	);
 }
