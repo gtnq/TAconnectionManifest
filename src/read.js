@@ -9,6 +9,8 @@ import ByStatus from "./bystatus";
 import options from "./options";
 import filterArvDep from "./arrivalDepart";
 import dateGenerate from "./dateGenerate";
+import weekGenerate from "./weekGenerate";
+import ByWeek from "./byWeek";
 
 const PDFReader = ({ pdfUrl, horiz }) => {
 	const [text, setText] = useState("");
@@ -29,7 +31,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 	const [byDateARV, setbyDateARV] = useState([]);
 	const [byDateDEP, setbyDateDEP] = useState([]);
 
-	const [week, setWeek] = useState(0);
+	const [week, setWeek] = useState([]);
 	const [weekArv, setWeekArv] = useState([]);
 	const [weekDep, setWeekDep] = useState([]);
 
@@ -68,11 +70,18 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 		if (choice === "status") {
 			setViaStatus(true);
 			setViaDate(false);
+			setViaWeek(false)
 			current = all
 		} else if (choice === "date") {
 			setViaStatus(false);
 			setViaDate(true);
+			setViaWeek(false)
 			current = byDate[0].flights
+		} else if (choice === "week") {
+			setViaStatus(false);
+			setViaDate(false);
+			setViaWeek(true)
+			current = week[0]
 		}
 		options(
 			"ALL",
@@ -128,8 +137,10 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			setAll(sortDate(all));
 			setText(generate(all));
 			setbyDate(dateGenerate(all));
+			setWeek(weekGenerate(all));
+			//console.log(week)
 			
-			// console.log(byDate)
+			//console.log(byDate)
 			// all.filter((item) => {return /\S/.test(item)})
 			// sort by date
 
@@ -154,11 +165,18 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			{!viaDate && (
 				<button onClick={(e) => changeDisplay("date")}>By Date</button>
 			)}
+
+			{!viaWeek && (
+				<button onClick={(e) => changeDisplay("week")}>By Week</button>
+			)}
 			<div className="viStatus">
 				{viaStatus && <ByStatus item={display} />}
 			</div>
 			<div className="viaDate">
 				{viaDate && <ByDate byDates={display} />}
+			</div>
+			<div className="viaWeek">
+				{viaWeek && <ByWeek byWeeks={display} />}
 			</div>
 		</div>
 	);

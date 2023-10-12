@@ -76,6 +76,7 @@ const generate = (all) => {
   let currentTitle = null;
   let tables = [];
   let rows = [];
+  console.log(all)
 
   all.forEach((item, ind) => {
     let title = item.date.date

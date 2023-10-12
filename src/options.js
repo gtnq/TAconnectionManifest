@@ -8,12 +8,12 @@ const options = (
 	setText,
 	all,
 	arv,
-	dep,
+	dep
 ) => {
-	let output
-	if (!arv || !dep) {
-		return
-	} else 
+	let output;
+	if (!arv || !dep || !all) {
+		return;
+	} else  
 	if (e === "ARV") {
 		setDisALL(false);
 		setDisARV(true);
@@ -35,6 +35,7 @@ const options = (
 		//console.log(all)
 		setText(output);
 	}
+
 };
 
 export default options;
