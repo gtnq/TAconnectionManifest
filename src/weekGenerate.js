@@ -12,7 +12,7 @@ const weekGenerate = (data) => {
             //verify if the previous pushed item's item.date.date is the same as the current one
             //if it is, then push the current item to the previous item's array
             //if not, then push the current item to the week array
-            if (week[week.length - 1].date.date === item.date.date) {
+            if (week[week.length - 1].date.date === item.date.date && week[week.length-1].flight !== item.flight) {
                 week.push(item);
             } else if (weekday.length === 7) {
                 arr.push(week);
