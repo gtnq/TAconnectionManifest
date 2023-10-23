@@ -47,11 +47,10 @@
     }
 	
 	body {
-		font-size: 12px;
+		font-size: 0.5em;
 		width: 100%;
 		max-width: 100%;
-		overflow: visible !important;
-		transform: scale(0.8); /* Adjust this value as needed */
+		overflow: hidden !important;
 		transform-origin: top left;
 	}
 
@@ -72,6 +71,6 @@
 
 	th,
 	td {
-		padding: 4px 8px ; /* Adjust as needed */
+		padding: 0px 0px ; /* Adjust as needed */
 	}
 }

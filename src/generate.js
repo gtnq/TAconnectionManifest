@@ -77,6 +77,15 @@ const generate = (all) => {
 	let tables = [];
 	let rows = [];
 	console.log(all);
+	const tableCells = (item) => {
+		return (
+			<TableCell
+				size="small"
+				style={{ padding: "0px 2px", fontSize: "1em" }}>
+				{item}
+			</TableCell>
+		);
+	};
 
 	all.forEach((item, ind) => {
 		let title = item.date.date;
@@ -86,22 +95,10 @@ const generate = (all) => {
 		if (title === currentTitle) {
 			rows.push(
 				<TableRow key={ind}>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.flight}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.date.time}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.dep.time ? item.dep.time : "ARV"}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						<Driver />
-					</TableCell>
+					{tableCells(item.flight)}
+					{tableCells(item.date.time)}
+					{tableCells(item.dep.time ? item.dep.time : "ARV")}
+					{tableCells(<Driver />)}
 				</TableRow>
 			);
 		} else {
@@ -116,39 +113,22 @@ const generate = (all) => {
 								aria-label="simple table">
 								<TableHead>
 									<TableRow>
-										<TableCell colSpan={4}>
+										<TableCell
+											size="small"
+											style={{
+												fontWeight: "bold",
+												padding: "2px 4px",
+												fontSize: "1.5em",
+											}}
+											colSpan={4}>
 											{currentTitle}
 										</TableCell>
 									</TableRow>
 									<TableRow>
-										<TableCell
-											style={{
-												padding: "4px 8px",
-												fontSize: "0.8em",
-											}}>
-											Flight
-										</TableCell>
-										<TableCell
-											style={{
-												padding: "4px 8px",
-												fontSize: "0.8em",
-											}}>
-											Time
-										</TableCell>
-										<TableCell
-											style={{
-												padding: "4px 8px",
-												fontSize: "0.8em",
-											}}>
-											Departure
-										</TableCell>
-										<TableCell
-											style={{
-												padding: "4px 8px",
-												fontSize: "0.8em",
-											}}>
-											Driver
-										</TableCell>
+										{tableCells("Flight")}
+										{tableCells("Time")}
+										{tableCells("Departure")}
+										{tableCells("Driver")}
 									</TableRow>
 								</TableHead>
 								<TableBody>{rows}</TableBody>
@@ -161,22 +141,10 @@ const generate = (all) => {
 			currentTitle = title;
 			rows.push(
 				<TableRow key={ind}>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.flight}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.date.time}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						{item.dep.time ? item.dep.time : "ARV"}
-					</TableCell>
-					<TableCell
-						style={{ padding: "4px 8px", fontSize: "0.8em" }}>
-						<Driver />
-					</TableCell>
+					{tableCells(item.flight)}
+					{tableCells(item.date.time)}
+					{tableCells(item.dep.time ? item.dep.time : "ARV")}
+					{tableCells(<Driver />)}
 				</TableRow>
 			);
 		}
@@ -185,6 +153,9 @@ const generate = (all) => {
 	// Add the last table
 	if (rows.length > 0) {
 		tables.push(
+			<div
+						className="table-wrapper"
+						key={currentTitle}>
 			<TableContainer
 				component={Paper}
 				key={currentTitle}>
@@ -194,45 +165,27 @@ const generate = (all) => {
 					<TableHead>
 						<TableRow>
 							<TableCell
-								colSpan={4}
-								>
+								size="small"
+								style={{
+									fontWeight: "bold",
+									padding: "2px 4px",
+									fontSize: "1.5em",
+								}}
+								colSpan={4}>
 								{currentTitle}
 							</TableCell>
 						</TableRow>
 						<TableRow>
-							<TableCell
-								style={{
-									padding: "4px 8px",
-									fontSize: "0.8em",
-								}}>
-								Flight
-							</TableCell>
-							<TableCell
-								style={{
-									padding: "4px 8px",
-									fontSize: "0.8em",
-								}}>
-								Time
-							</TableCell>
-							<TableCell
-								style={{
-									padding: "4px 8px",
-									fontSize: "0.8em",
-								}}>
-								Departure
-							</TableCell>
-							<TableCell
-								style={{
-									padding: "4px 8px",
-									fontSize: "0.8em",
-								}}>
-								Driver
-							</TableCell>
+							{tableCells("Flight")}
+							{tableCells("Time")}
+							{tableCells("Departure")}
+							{tableCells("Driver")}
 						</TableRow>
 					</TableHead>
 					<TableBody>{rows}</TableBody>
 				</Table>
 			</TableContainer>
+			</div>
 		);
 	}
 
