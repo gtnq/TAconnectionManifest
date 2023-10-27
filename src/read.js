@@ -116,11 +116,11 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 					//console.log(strings)
 					console.log(strings)
-					// if (strings){
-					// 	steps = strings[0].split(' ')
-					// }
-					console.log(strings[0])
-					if (strings[0] === "Folio" || strings[0] === "DATE" ) {
+				// if (strings){
+				// 	steps = strings[0].split(' ')
+				// 	}
+				// console.log(steps[0])
+				if (strings[0] === "Folio" || strings[0] === "DATE" || strings[0] === "SkyWest Ground Transportation Schedule") {
 						
 						if (horiz) {
 							strings = horizFilterInfo(strings);

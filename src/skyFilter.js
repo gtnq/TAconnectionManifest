@@ -26,13 +26,16 @@ function skyFilterInfo(string) {
 	);
 	console.log(filteredData);
 
-	const timeonly = filteredData.filter((item) => item.match(time));
-	console.log(timeonly)
+	const extractedTimes = filteredData.map(item => {
+		const match = item.match(time);
+		return match ? match[1] : null;
+	}).filter(Boolean);
+	console.log(extractedTimes,'test')
 	for (let i = 0; i < filteredData.length; i++) {
 		if (pickup.test(filteredData[i]) && !departure) {
-			if (pickup.test(filteredData[i + 1])) 
-				continue;
-			departure = true
+			if (pickup.test(filteredData[i + 1])){
+
+			}
 
 
 		}
