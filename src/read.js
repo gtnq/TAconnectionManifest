@@ -102,6 +102,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 
 			const loadingTask = pdfjs.getDocument(pdfUrl);
 			const pdf = await loadingTask.promise;
+			let steps;
 			for (let i = 1; i < pdf.numPages+1; i++) {
 				const page = await pdf.getPage(i);
 
@@ -114,15 +115,21 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 					// console.log(strings)
 
 					//console.log(strings)
-					if (strings[0] === "Folio") {
+					console.log(strings)
+					// if (strings){
+					// 	steps = strings[0].split(' ')
+					// }
+					console.log(strings[0])
+					if (strings[0] === "Folio" || strings[0] === "DATE" ) {
 						
 						if (horiz) {
 							strings = horizFilterInfo(strings);
 							//console.log(strings)
 						} else {
+							console.log()
 							strings = skyFilterInfo(strings);
 						}
-						all.push(...strings);
+						// all.push(...strings);
 					}
 
 					//console.log(all)
@@ -131,7 +138,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 				// const strings = content.items.map((item) => item.str);
 				// setText(strings.join(" "))
 			}
-
+			
 			setArv(sortDate(filterArvDep(all, true)));
 			setDep(sortDate(filterArvDep(all, false)));
 			setAll(sortDate(all));
