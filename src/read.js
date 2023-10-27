@@ -115,7 +115,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 					// console.log(strings)
 
 					//console.log(strings)
-					console.log(strings)
+					//console.log(strings)
 				// if (strings){
 				// 	steps = strings[0].split(' ')
 				// 	}
@@ -126,13 +126,13 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 							strings = horizFilterInfo(strings);
 							//console.log(strings)
 						} else {
-							console.log()
+							//console.log()
 							strings = skyFilterInfo(strings);
 						}
-						// all.push(...strings);
+						//all.push(...strings);
 					}
 
-					//console.log(all)
+					console.log(all)
 				});
 
 				// const strings = content.items.map((item) => item.str);

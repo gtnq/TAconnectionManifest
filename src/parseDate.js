@@ -1,5 +1,4 @@
 function parseDateString(dateStr) {
-    console.log(dateStr)
     const months = {
         'Jan': 0,
         'Feb': 1,
@@ -15,7 +14,15 @@ function parseDateString(dateStr) {
         'Dec': 11
     };
 
-    const parts = dateStr.split(' ');
+    // Check the position of the month and adjust the splitting accordingly
+    let parts;
+    if (isNaN(parseInt(dateStr.charAt(0)))) {
+        parts = dateStr.split(/[\s,]+/);
+        parts = [parts[0], parts[1], parts[2], parts[3] + parts[4]];
+    } else {
+        parts = dateStr.split(' ');
+        parts = [parts[1], parts[0], parts[2], parts[3]];
+    }
 
     const month = months[parts[0]];
     const day = parseInt(parts[1], 10);
@@ -24,7 +31,7 @@ function parseDateString(dateStr) {
     const timeParts = parts[3].split(':');
     let hours = parseInt(timeParts[0], 10);
     const minutes = parseInt(timeParts[1].substr(0, 2), 10);
-    const amPm = timeParts[1].substr(2);
+    const amPm = timeParts[1].substr(2).trim();
 
     if (amPm === 'PM' && hours < 12) {
         hours += 12;
@@ -32,11 +39,11 @@ function parseDateString(dateStr) {
         hours = 0;
     }
 
-    let date = new Date(year, month, day, hours, minutes);
-    let dateString = date.toDateString()
-    let timeStr = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    const date = new Date(year, month, day, hours, minutes);
+    const dateString = date.toDateString();
+    const timeStr = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
-    return {date: dateString, time: timeStr};
+    return { date: dateString, time: timeStr };
 }
 
 export default parseDateString;

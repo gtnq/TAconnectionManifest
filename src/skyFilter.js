@@ -16,29 +16,48 @@ function skyFilterInfo(string) {
 
 	//================================================================================================
 	//above are old search pattern
-	let departure = false
+	let departure = false,
+		result = [],
+		added = false;
 	let pickup = /\d{2} \w{3} \d{2}:\d{2}/i;
-	let time = /(\d{2}:\d{2})/i
+	let time = /(\d{2}:\d{2})/i;
 	let flighttime = /\w{2} \d{4}-\d{2} \w{3} \d{2}:\d{2}/i;
+	let flight = /\b([A-Z]{2} \d{4})\b/;
+	let date = /\b(\d{1,2} [A-Z][a-z]{2})\b/,
+		parseddate;
 
 	const filteredData = string.filter(
 		(item) => pickup.test(item) || flighttime.test(item)
 	);
 	console.log(filteredData);
 
-	const extractedTimes = filteredData.map(item => {
-		const match = item.match(time);
-		return match ? match[1] : null;
-	}).filter(Boolean);
-	console.log(extractedTimes,'test')
-	for (let i = 0; i < filteredData.length; i++) {
-		if (pickup.test(filteredData[i]) && !departure) {
-			if (pickup.test(filteredData[i + 1])){
+	const extracte = (filter, fill, addon) =>
+		filteredData
+			.map((item) => {
+				const match = item.match(filter);
+				return (match ? match[1] : fill) + (addon ? " " + addon : "");
+			})
+			.filter(Boolean);
 
-			}
+	const extractedTimes = extracte(time, null, null);
+	const extractedFlights = extracte(flight, "shuttle", null);
+	const extractedDates = extracte(date, null, "2023");
 
+	// console.log(extractedTimes, "times");
+	// console.log(extractedFlights, "flights");
+	// console.log(extractedDates, "dates");
 
+	for (let i = 1; i < filteredData.length; i++) {
+		if (
+			extractedTimes[i] > extractedTimes[i - 1] &&
+			extractedFlights[i - 1] === "shuttle"
+		) {
+			departure = true;
 		}
+		parseddate = parseDateString(
+			extractedDates[i] + " " + convertTo12Hour(extractedTimes[i])
+		);
+		console.log(parseddate, "new string");
 	}
 
 	// let result = [],
@@ -80,6 +99,24 @@ function skyFilterInfo(string) {
 	//console.log(result[result.length-1])
 	//}
 	return;
+}
+
+function convertTo12Hour(time) {
+	// Split the input time into hours and minutes
+	let [hour, minute] = time.split(":").map(Number);
+
+	// Determine AM or PM
+	let period = hour < 12 ? "AM" : "PM";
+
+	// Convert the hour to 12-hour format
+	if (hour === 0) {
+		hour = 12;
+	} else if (hour > 12) {
+		hour -= 12;
+	}
+
+	// Return the time in 12-hour format
+	return `${hour}:${minute < 10 ? "0" : ""}${minute} ${period}`;
 }
 
 export default skyFilterInfo;
