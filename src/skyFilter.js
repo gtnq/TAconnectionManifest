@@ -65,7 +65,7 @@ function skyFilterInfo(string) {
 			result.push({
 				flight: extractedFlights[i],
 				date: parsedtime,
-				dep: ' ',
+				dep: true,
 			})
 		}
 		}
