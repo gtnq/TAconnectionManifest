@@ -24,7 +24,7 @@ function skyFilterInfo(string) {
 	let flighttime = /\w{2} \d{4}-\d{2} \w{3} \d{2}:\d{2}/i;
 	let flight = /\b([A-Z]{2} \d{4})\b/;
 	let date = /\b(\d{1,2} [A-Z][a-z]{2})\b/,
-		parseddate;
+		parsedtime,parseddeptime;
 
 	const filteredData = string.filter(
 		(item) => pickup.test(item) || flighttime.test(item)
@@ -40,25 +40,36 @@ function skyFilterInfo(string) {
 			.filter(Boolean);
 
 	const extractedTimes = extracte(time, null, null);
-	const extractedFlights = extracte(flight, "shuttle", null);
+	let extractedFlights = extracte(flight, "shuttle", null);
 	const extractedDates = extracte(date, null, "2023");
 
 	// console.log(extractedTimes, "times");
 	// console.log(extractedFlights, "flights");
 	// console.log(extractedDates, "dates");
 
-	for (let i = 1; i < filteredData.length; i++) {
-		if (
-			extractedTimes[i] > extractedTimes[i - 1] &&
-			extractedFlights[i - 1] === "shuttle"
-		) {
-			departure = true;
+	extractedFlights = extractedFlights.map((item) => {
+		return item.replace("OO", "SK")})
+
+	for (let i = 1; i < filteredData.length; i += 2) {
+		if (extractedTimes[i] > extractedTimes[i-1]){
+			parseddeptime = parseDateString(extractedDates[i-1] + " " + extractedTimes[i-1]);
+			parsedtime = parseDateString(extractedDates[i] + " " + extractedTimes[i]);
+
+			result.push({
+				flight: extractedFlights[i],
+				date: parsedtime,
+				dep: parseddeptime,
+			})
+		} else  if (extractedTimes[i] === extractedTimes[i-1]) {
+			parsedtime = parseDateString(extractedDates[i] + " " + extractedTimes[i]);
+			result.push({
+				flight: extractedFlights[i],
+				date: parsedtime,
+				dep: ' ',
+			})
 		}
-		parseddate = parseDateString(
-			extractedDates[i] + " " + convertTo12Hour(extractedTimes[i])
-		);
-		console.log(parseddate, "new string");
-	}
+		}
+	
 
 	// let result = [],
 	// 	parsedDate;
@@ -98,7 +109,7 @@ function skyFilterInfo(string) {
 	//     }
 	//console.log(result[result.length-1])
 	//}
-	return;
+	return result;
 }
 
 function convertTo12Hour(time) {

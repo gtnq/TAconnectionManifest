@@ -129,7 +129,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 							//console.log()
 							strings = skyFilterInfo(strings);
 						}
-						//all.push(...strings);
+						all.push(...strings);
 					}
 
 					console.log(all)
