@@ -1,4 +1,5 @@
 function parseDateString(dateStr) {
+    console.log(dateStr)
     const months = {
         'Jan': 0,
         'Feb': 1,
@@ -13,6 +14,9 @@ function parseDateString(dateStr) {
         'Nov': 10,
         'Dec': 11
     };
+
+    // Remove any leading/trailing whitespace
+    dateStr = dateStr.trim();
 
     // Check the position of the month and adjust the splitting accordingly
     let parts;
@@ -31,11 +35,10 @@ function parseDateString(dateStr) {
     const timeParts = parts[3].split(':');
     let hours = parseInt(timeParts[0], 10);
     const minutes = parseInt(timeParts[1].substr(0, 2), 10);
-    const amPm = timeParts[1].substr(2).trim();
 
-    if (amPm === 'PM' && hours < 12) {
+    if (parts[3].endsWith('PM') && hours < 12) {
         hours += 12;
-    } else if (amPm === 'AM' && hours === 12) {
+    } else if (parts[3].endsWith('AM') && hours === 12) {
         hours = 0;
     }
 
@@ -45,5 +48,6 @@ function parseDateString(dateStr) {
 
     return { date: dateString, time: timeStr };
 }
+
 
 export default parseDateString;
