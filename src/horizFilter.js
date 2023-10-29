@@ -3,7 +3,7 @@ import parseDate from "./parseDate.js";
 function horizFilterInfo(data) {
 	// console.log(data)
 	// Regular expressions
-	const flightRegex = /^AS\d{4}$/;
+	const flightRegex = /(AS|DHA)\d{3,4}$/;
 	const dateRegex =
 		/((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{1,2}, \d{4})/
 	const timeRegex = /\d{1,2}:\d{2}(AM|PM)$/i;
@@ -71,7 +71,7 @@ function horizFilterInfo(data) {
 			// console.log(info)
 		}
 		//console.log(info.flight, info.date);
-        //console.log(info)
+        console.log(info)
 		if (info.flight && info.date ) {
 			result.push(info);
 			//console.log("pushed");
