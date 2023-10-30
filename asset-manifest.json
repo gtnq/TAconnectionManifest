@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TAconnectionManifest/static/css/main.4c0b9ad5.css",
-    "main.js": "/TAconnectionManifest/static/js/main.90ea1aac.js",
+    "main.css": "/TAconnectionManifest/static/css/main.b55f53a8.css",
+    "main.js": "/TAconnectionManifest/static/js/main.ca39f845.js",
     "static/js/787.c42ae8f5.chunk.js": "/TAconnectionManifest/static/js/787.c42ae8f5.chunk.js",
     "index.html": "/TAconnectionManifest/index.html",
-    "main.4c0b9ad5.css.map": "/TAconnectionManifest/static/css/main.4c0b9ad5.css.map",
-    "main.90ea1aac.js.map": "/TAconnectionManifest/static/js/main.90ea1aac.js.map",
+    "main.b55f53a8.css.map": "/TAconnectionManifest/static/css/main.b55f53a8.css.map",
+    "main.ca39f845.js.map": "/TAconnectionManifest/static/js/main.ca39f845.js.map",
     "787.c42ae8f5.chunk.js.map": "/TAconnectionManifest/static/js/787.c42ae8f5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c0b9ad5.css",
-    "static/js/main.90ea1aac.js"
+    "static/css/main.b55f53a8.css",
+    "static/js/main.ca39f845.js"
   ]
 }
