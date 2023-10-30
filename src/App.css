@@ -66,7 +66,20 @@
 		flex: 1;
 		max-width: 33%; /* slightly less than half to account for any margins or padding */
 		box-sizing: border-box;
-		page-break-inside: avoid !important; /* attempt to avoid breaking tables across pages */
+		page-break-inside: avoid ; /* attempt to avoid breaking tables across pages */
+	}
+
+	.table-wrapper-all {
+		flex: 1;
+		max-width: 30%; /* slightly less than half to account for any margins or padding */
+		box-sizing: border-box;
+		page-break-inside: avoid ; /* attempt to avoid breaking tables across pages */
+	}
+
+	.table-container-all {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
 	}
 
 	th,

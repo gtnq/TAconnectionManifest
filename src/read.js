@@ -11,6 +11,7 @@ import filterArvDep from "./arrivalDepart";
 import dateGenerate from "./dateGenerate";
 import weekGenerate from "./weekGenerate";
 import ByWeek from "./byWeek";
+import Allgenerate from "./allgenerate";
 
 const PDFReader = ({ pdfUrl, horiz }) => {
 	const [text, setText] = useState("");
@@ -91,7 +92,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			setText,
 			current,
 			arv,
-			dep
+			dep,
 		);
 	};
 
@@ -132,7 +133,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 						all.push(...strings);
 					}
 
-					console.log(all)
+					//console.log(all)
 				});
 
 				// const strings = content.items.map((item) => item.str);
@@ -142,7 +143,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			setArv(sortDate(filterArvDep(all, true)));
 			setDep(sortDate(filterArvDep(all, false)));
 			setAll(sortDate(all));
-			setText(generate(all));
+			setText(Allgenerate(all));
 			setbyDate(dateGenerate(all));
 			setWeek(weekGenerate(all));
 			//console.log(week)
@@ -174,7 +175,7 @@ const PDFReader = ({ pdfUrl, horiz }) => {
 			)}
 
 			{!viaWeek && (
-				<button onClick={(e) => changeDisplay("week")}>By Week</button>
+				<button className="column-to-hide" onClick={(e) => changeDisplay("week")}>By Week</button>
 			)}
 			<div className="viStatus">
 				{viaStatus && <ByStatus item={display} />}

@@ -71,12 +71,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Driver from "./driverSelect";
+import DepartureTime from "./depTime";
 
 const generate = (all) => {
 	let currentTitle = null;
 	let tables = [];
 	let rows = [];
-	console.log(all);
+	//console.log(all);
 	const tableCells = (item) => {
 		return (
 			<TableCell
@@ -97,7 +98,13 @@ const generate = (all) => {
 				<TableRow key={ind}>
 					{tableCells(item.flight)}
 					{tableCells(item.date.time)}
-					{tableCells(item.dep.time ? item.dep.time : "ARV")}
+					{tableCells(
+						item.dep.time ? (
+							<DepartureTime de={item.dep.time} />
+						) : (
+							"ARV"
+						)
+					)}
 					{tableCells(<Driver />)}
 				</TableRow>
 			);
@@ -143,7 +150,13 @@ const generate = (all) => {
 				<TableRow key={ind}>
 					{tableCells(item.flight)}
 					{tableCells(item.date.time)}
-					{tableCells(item.dep.time ? item.dep.time : "ARV")}
+					{tableCells(
+						item.dep.time ? (
+							<DepartureTime de={item.dep.time} />
+						) : (
+							"ARV"
+						)
+					)}
 					{tableCells(<Driver />)}
 				</TableRow>
 			);
@@ -154,37 +167,37 @@ const generate = (all) => {
 	if (rows.length > 0) {
 		tables.push(
 			<div
-						className="table-wrapper"
-						key={currentTitle}>
-			<TableContainer
-				component={Paper}
+				className="table-wrapper"
 				key={currentTitle}>
-				<Table
-					style={{ minWidth: 100 }}
-					aria-label="simple table">
-					<TableHead>
-						<TableRow>
-							<TableCell
-								size="small"
-								style={{
-									fontWeight: "bold",
-									padding: "2px 4px",
-									fontSize: "1.5em",
-								}}
-								colSpan={4}>
-								{currentTitle}
-							</TableCell>
-						</TableRow>
-						<TableRow>
-							{tableCells("Flight")}
-							{tableCells("Time")}
-							{tableCells("Departure")}
-							{tableCells("Driver")}
-						</TableRow>
-					</TableHead>
-					<TableBody>{rows}</TableBody>
-				</Table>
-			</TableContainer>
+				<TableContainer
+					component={Paper}
+					key={currentTitle}>
+					<Table
+						style={{ minWidth: 100 }}
+						aria-label="simple table">
+						<TableHead>
+							<TableRow>
+								<TableCell
+									size="small"
+									style={{
+										fontWeight: "bold",
+										padding: "2px 4px",
+										fontSize: "1.5em",
+									}}
+									colSpan={4}>
+									{currentTitle}
+								</TableCell>
+							</TableRow>
+							<TableRow>
+								{tableCells("Flight")}
+								{tableCells("Time")}
+								{tableCells("Departure")}
+								{tableCells("Driver")}
+							</TableRow>
+						</TableHead>
+						<TableBody>{rows}</TableBody>
+					</Table>
+				</TableContainer>
 			</div>
 		);
 	}

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 function Driver() {
-	const drivers = ["Jose", "Freddie", "Jule", "Phoenix"];
+	const drivers = ["Jose", "Freddie", "Jule", "Phoenix","Nick", "Justin", "Jess O"];
 	const [driver, setDriver] = useState("");
 	const [disDriver, setDisDriver] = useState(true);
 

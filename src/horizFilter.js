@@ -71,7 +71,7 @@ function horizFilterInfo(data) {
 			// console.log(info)
 		}
 		//console.log(info.flight, info.date);
-        console.log(info)
+        //console.log(info)
 		if (info.flight && info.date ) {
 			result.push(info);
 			//console.log("pushed");

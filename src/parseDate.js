@@ -1,5 +1,5 @@
 function parseDateString(dateStr) {
-    console.log(dateStr)
+    //console.log(dateStr)
     const months = {
         'Jan': 0,
         'Feb': 1,

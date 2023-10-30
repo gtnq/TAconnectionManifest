@@ -18,6 +18,7 @@ const ByStatus = ( {item} ) => {
 	return (
 		<>
 			<select
+				className="column-to-hide"
 				defaultValue="ALL"
 				onChange={(e) => {
 					options(
@@ -29,6 +30,7 @@ const ByStatus = ( {item} ) => {
 						all,
 						arv,
 						dep,
+						true
 					)
 					
 					;

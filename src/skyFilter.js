@@ -28,7 +28,7 @@ function skyFilterInfo(string) {
 	const filteredData = string.filter(
 		(item) => pickup.test(item) || flighttime.test(item)
 	);
-	console.log(filteredData);
+	//console.log(filteredData);
 
 	const extracte = (filter, fill, addon) =>
 		filteredData
