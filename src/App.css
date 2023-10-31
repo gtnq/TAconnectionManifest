@@ -47,7 +47,7 @@
     }
 	
 	body {
-		font-size: 0.8em;
+		
 		width: 100%;
 		max-width: 100%;
 		overflow: hidden !important;
@@ -56,6 +56,7 @@
 
 	/* Container for tables */
 	.table-container {
+		
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -64,6 +65,7 @@
 	/* Individual table wrapper */
 	.table-wrapper {
 		flex: 1;
+		font-size: 0.8em;
 		max-width: 33%; /* slightly less than half to account for any margins or padding */
 		box-sizing: border-box;
 		page-break-inside: avoid ; /* attempt to avoid breaking tables across pages */
@@ -78,6 +80,7 @@
 
 	.table-container-all {
 		display: flex;
+		font-size: 0.4em;
 		flex-wrap: wrap;
 		justify-content: space-between;
 	}

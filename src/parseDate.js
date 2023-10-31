@@ -44,9 +44,9 @@ function parseDateString(dateStr) {
 
     const date = new Date(year, month, day, hours, minutes);
     const dateString = date.toDateString();
-    const timeStr = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-
-    return { date: dateString, time: timeStr };
+    const timeStrSpace = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    //const timeStr = timeStrSpace.replace(/ /g, "");
+    return { date: dateString, time: timeStrSpace };
 }
 
 

@@ -50,7 +50,7 @@ const Allgenerate = (all) => {
 											size="small"
 											style={{
 												fontWeight: "bold",
-												padding: "2px 4px",
+												padding: "0px 2px",
 												fontSize: "0.5em",
 											}}
 											colSpan={2}>
@@ -97,7 +97,7 @@ const Allgenerate = (all) => {
 									size="small"
 									style={{
 										fontWeight: "bold",
-										padding: "2px 4px",
+										padding: "0px 2px",
 										fontSize: "0.5em",
 									}}
 									colSpan={2}>
